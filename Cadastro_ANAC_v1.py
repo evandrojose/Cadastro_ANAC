@@ -7,7 +7,12 @@
 #------------------------------------------------------------------------------------------------------------------------------
 
 def main():
+        
 	from pathlib import Path
+	import csv
+	import pandas as pd
+
+	#Instrucoes na tela
 	print ('1. Visite: https://www.anac.gov.br/assuntos/setor-regulado/aerodromos/cadastro-de-aerodromos-civis')
 	print ('2. Faça download dos arquivos CSV relacionados aos aerodromos brasileiros. Pode-se analisar mais de um arquivo ao mesmo tempo')
 	print ('3. Crie uma pasta, adicione estes arquivos e e troque a extensão .csv por .entrada')
@@ -30,8 +35,7 @@ def main():
 	LATD_0,LONGT_0= -13.,-48.77 #Centro
 	Delta=100.#graus  #empregue valores menores para filtrar aerodromos em raio de Delta graus em relação ao centro
 	
-	import csv
-	import pandas as pd
+	
 	LOG=[]
 	
 	ICAO,TIPO,NOME,MUNICIPIO,UF,LATD,LONGT,DIST,COMPRIMENTO,LARGURA,APROXIMCAO,SUPERFICIE,ORIENTACAO=[],[],[],[],[],[],[],[],[],[],[],[],[]
@@ -233,26 +237,27 @@ def main():
 	df = pd.DataFrame(list(zip(ICAO,TIPO,NOME,MUNICIPIO,UF,LATD,LONGT,DIST,APROXIMCAO,SUPERFICIE,COMPRIMENTO,LARGURA,ORIENTACAO)), columns =cols )
 	
 	
-	print (df)
+	#print (df)
 	
 	
 	
 	
-	df_filtered=df[df['DIST'] <Delta]
+	df_filtered=df[df['DIST'] <Delta]#in case a filter Delta is applied
 	
-	print (df_filtered)
-	df_filtered.to_csv ('OUTPUT_Aerodromos_Consolidado.csv', index = None, header=True)
+	#print (df_filtered)
+	df_filtered.to_csv (folder+'/OUTPUT_Aerodromos_Consolidado.csv', index = None, header=True)
 	print('             ......                             ....                                         ')
 	print ('Arquivo CSV Salvo. Ele pode ser lido no QGIS, por exemplo')
 	print ('Ha um arquivo de log para os erros na mesma pasta dos arquivos')
 	            
 	print('             ......                             ....                                         ')
-	with open("log.txt", 'w') as output:
+	with open(folder+"/log.txt", 'w') as output:
 	    for row in LOG:
 	        output.write(str(row) + '\n')
 	
 	input('Pressione qualquer tecla para finalizar')
 	exit()
 
-
+if __name__ == "__main__":
+    main()
 
