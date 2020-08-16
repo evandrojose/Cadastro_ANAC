@@ -6,6 +6,8 @@ Material developed by:
 Prof. Dr. Evandro Jose da Silva - Aeronautics Institute of Technology, Brazil
 http://www.civil.ita.br/~evandro/
 ================================================================================================
+O instalador Windows pode ser encontrado em:
+https://drive.google.com/drive/folders/1Psy2G0Y6RnPaXWoRaK69Ha0r1FyS8YbQ?usp=sharing
 ===============================================================================================
 
 This material can be used as a Python (3.7 version) script; or 
